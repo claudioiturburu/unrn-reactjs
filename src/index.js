@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Estudiante from './Estudiante';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+let estudiante = {
+  nombre: "Claudio",
+  apellido: "Iturburu",
+}
+
 root.render(
   <React.StrictMode>
-    <Estudiante />
-    <Estudiante />
+    <Estudiante estudiante={estudiante} />
   </React.StrictMode>
 );
 

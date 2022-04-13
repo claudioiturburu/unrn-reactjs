@@ -1,9 +1,33 @@
 .card {
-    background-color: rgb(192, 190, 189);
-    border-radius: 5px;
-    margin: 16px;
-    padding: 16px;
-    margin-left: 450px;
-    margin-right: 450px;
-    box-shadow: 0 2px 5px 0 #ccc;
-  }
+  background-color: rgb(192, 190, 189);
+  border-radius: 5px;
+  margin: 16px;
+  padding: 16px;
+  margin-left: 450px;
+  margin-right: 450px;
+  box-shadow: 0 2px 5px 0 #ccc;
+}
+
+.btn-center {
+  padding: 10px;
+  margin: 0 auto;
+  font-weight: bold;
+  display:block;
+  color: white;
+  background-color:  rgb(58, 206, 58);
+  border: 1px solid black; 
+}
+
+.table {
+  border: 2px black solid;
+  margin: auto;
+}
+
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
+thead tr {
+  background: black;
+  color: white;
+}

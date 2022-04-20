@@ -25,7 +25,7 @@ export default class Estudiante extends Component {
             ));
     }
 
-    listarEstudiante(idEstudiante) {
+    listarEstudiante(e,idEstudiante) {
         const url = 'http://localhost:1234/estudiantes?idEstudiante='+idEstudiante;
         fetch(url)
             .then((respuesta) => respuesta.json())
@@ -43,7 +43,7 @@ export default class Estudiante extends Component {
                 <div>
                     <p>
                         <button className="btn-center" onClick={this.listarCursos}>Listar Cursos</button>
-                        <button className="btn-center" onClick={this.listarEstudiante("2")}>Listar Estudiante 2</button>
+                        <button className="btn-center" onClick={(e) => this.listarEstudiante(e,"2")}>Listar Estudiante 2</button>
                     </p>
                     <table className="table">
                         <thead>

@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Estudiante from './Estudiante';
+import CrearEstudiante from './CrearEstudiante';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let estudiante = {
-  nombre: "Claudio",
-  apellido: "Iturburu",
-}
 
 root.render(
   <React.StrictMode>
-    <Estudiante estudiante={estudiante} />
+    <CrearEstudiante estudiante />
   </React.StrictMode>
 );
 

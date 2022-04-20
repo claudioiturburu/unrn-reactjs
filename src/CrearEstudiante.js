@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form';
 
 export default class CrearEstudiante extends Component {
 
@@ -6,6 +9,7 @@ export default class CrearEstudiante extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleClose = this.handleClose.bind(this);
       
         this.state = {
             form: {
@@ -15,6 +19,8 @@ export default class CrearEstudiante extends Component {
             },
             resultado: "",
             cursos: [],
+            show: false,
+            variant: "success",
         };
     }
 
@@ -42,15 +48,27 @@ export default class CrearEstudiante extends Component {
         })
         .then((respuesta) => respuesta.json())
         .then((json) => {
+            let variant = "success";
             if (json.result === "error") {
+                variant = "danger";
                 this.setState({
                     resultado: json.message,
                 });
-                return;
+            } else {
+                this.setState({
+                    resultado: "Estudiante agregado",
+                });
             }
             this.setState({
-                resultado: "Estudiante agregado",
+                show: true,
+                variant: variant,
             });
+        });
+    }
+
+    handleClose() {
+        this.setState({
+            show: false,
         });
     }
 
@@ -71,23 +89,49 @@ export default class CrearEstudiante extends Component {
         return (
             <>
                 <div>
-                    <form>
-                        <label>apellido</label>
-                        <input type="text" name="apellido" onChange={this.handleChange} value={this.state.form.apellido}></input>
-                        <label>nombre</label>
-                        <input type="text" name="nombre" onChange={this.handleChange} value={this.state.form.nombre}></input>
-                        <label for="idCurso">curso</label>
-                        <select name="idCurso" onChange={this.handleChange}>
-                            {this.state.cursos.map((c,index) => (
-                                <option key={index} value={c.idCurso}>
-                                    {c.descripcion}
-                                </option>
-                            ))}
-                        </select>
+                    {this.state.show && (
+                        <Alert variant={this.state.variant} onClose={this.handleClose} dismissible>
+                            <Alert.Heading>{this.state.resultado}</Alert.Heading>
+                        </Alert>
+                    )}
+
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Apellido</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="apellido"
+                                onChange={this.handleChange}
+                                value={this.state.form.apellido}
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Nombre</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="nombre"
+                                onChange={this.handleChange}
+                                value={this.state.form.nombre}
+                            />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Curso</Form.Label>
+                            <Form.Control
+                                name="idCurso"
+                                onChange={this.handleChange}
+                                as="select"
+                            >
+                                {this.state.cursos.map((c,index) => (
+                                    <option key={index} value={c.idCurso}>
+                                        {c.descripcion}
+                                    </option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
                         
-                        <button onClick={this.handleSubmit} type="submit">Enviar</button>
-                    </form>
-                    <p>{this.state.resultado}</p>
+                        <Button variant="primary" onClick={this.handleSubmit} type="submit">Enviar</Button>
+                    </Form>
                 </div>
             </>
         )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import CrearEstudiante from './CrearEstudiante';
 import Estudiante from './Estudiante';
-import Wellcome from './Wellcome';
+import Welcome from './Welcome';
 import Container from 'react-bootstrap/Container';
 
 export default class Body extends Component {
@@ -14,8 +14,8 @@ export default class Body extends Component {
         return (
             <>
                 <Container fluid className="body">
-                    {this.props.itemClicked === 0 && <Wellcome />}
-                    {this.props.itemClicked === 1 && <Estudiante />}
+                    {this.props.itemClicked === 0 && <Welcome />}
+                    {this.props.itemClicked === 1 && <Estudiante idEstudiante={this.props.idEstudianteSearch} />}
                     {this.props.itemClicked === 2 && <CrearEstudiante />}
                 </Container>
             </>

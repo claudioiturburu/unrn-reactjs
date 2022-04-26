@@ -88,51 +88,49 @@ export default class CrearEstudiante extends Component {
     render() {
         return (
             <>
-                <div>
-                    {this.state.show && (
-                        <Alert variant={this.state.variant} onClose={this.handleClose} dismissible>
-                            <Alert.Heading>{this.state.resultado}</Alert.Heading>
-                        </Alert>
-                    )}
+                {this.state.show && (
+                    <Alert variant={this.state.variant} onClose={this.handleClose} dismissible>
+                        <Alert.Heading>{this.state.resultado}</Alert.Heading>
+                    </Alert>
+                )}
 
-                    <Form>
-                        <Form.Group>
-                            <Form.Label>Apellido</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="apellido"
-                                onChange={this.handleChange}
-                                value={this.state.form.apellido}
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Nombre</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="nombre"
-                                onChange={this.handleChange}
-                                value={this.state.form.nombre}
-                            />
-                        </Form.Group>
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="apellido"
+                            onChange={this.handleChange}
+                            value={this.state.form.apellido}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="nombre"
+                            onChange={this.handleChange}
+                            value={this.state.form.nombre}
+                        />
+                    </Form.Group>
 
-                        <Form.Group>
-                            <Form.Label>Curso</Form.Label>
-                            <Form.Control
-                                name="idCurso"
-                                onChange={this.handleChange}
-                                as="select"
-                            >
-                                {this.state.cursos.map((c,index) => (
-                                    <option key={index} value={c.idCurso}>
-                                        {c.descripcion}
-                                    </option>
-                                ))}
-                            </Form.Control>
-                        </Form.Group>
-                        
-                        <Button variant="primary" onClick={this.handleSubmit} type="submit">Enviar</Button>
-                    </Form>
-                </div>
+                    <Form.Group>
+                        <Form.Label>Curso</Form.Label>
+                        <Form.Control
+                            name="idCurso"
+                            onChange={this.handleChange}
+                            as="select"
+                        >
+                            {this.state.cursos.map((c,index) => (
+                                <option key={index} value={c.idCurso}>
+                                    {c.descripcion}
+                                </option>
+                            ))}
+                        </Form.Control>
+                    </Form.Group>
+                    
+                    <Button variant="primary" onClick={this.handleSubmit} type="submit">Enviar</Button>
+                </Form>
             </>
         )
     }
